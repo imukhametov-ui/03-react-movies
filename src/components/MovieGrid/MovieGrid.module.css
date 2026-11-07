@@ -1,0 +1,29 @@
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 0;
+  margin: 24px 0;
+  list-style: none;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+.poster {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.title {
+  padding: 12px;
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+}
