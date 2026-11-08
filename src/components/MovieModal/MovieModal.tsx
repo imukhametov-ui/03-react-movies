@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import type { Movie } from "../../types/movie";
 import css from "./MovieModal.module.css";
 
@@ -28,8 +29,8 @@ export default function MovieModal({
     };
   }, [onClose]);
 
-  return (
-    <div className={css.overlay} onClick={onClose}>
+  return createPortal(
+  <div className={css.overlay} onClick={onClose}>
       <div
         className={css.modal}
         role="dialog"
@@ -48,13 +49,13 @@ export default function MovieModal({
 
         <h2 id="movie-modal-title">{movie.title}</h2>
 
-        {movie.poster_path && (
-          <img
-            className={css.poster}
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-          />
-        )}
+        {movie.backdrop_path && (
+  <img
+    className={css.poster}
+    src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+    alt={movie.title}
+  />
+)}
 
         <p>{movie.overview || "No description available."}</p>
 
@@ -67,6 +68,7 @@ export default function MovieModal({
           <strong>Rating:</strong> {movie.vote_average.toFixed(1)} / 10
         </p>
       </div>
-    </div>
+        </div>,
+    document.body
   );
 }

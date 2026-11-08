@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import css from "./SearchBar.module.css";
+import toast from "react-hot-toast";
 
 interface SearchBarProps {
   onSubmit: (query: string) => void;
@@ -13,7 +14,10 @@ export default function SearchBar({ onSubmit }: SearchBarProps) {
 
     const trimmedQuery = query.trim();
 
-    if (!trimmedQuery) return;
+    if (!trimmedQuery) {
+  toast.error("Please enter a movie name.");
+  return;
+}
 
     onSubmit(trimmedQuery);
     setQuery("");
